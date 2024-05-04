@@ -1,0 +1,227 @@
+body {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.header-dropdown {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.welcome-cards {
+    display: flex;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1;
+    visibility: visible;
+}
+
+.welcome-cards.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; /* Optional: prevent interaction when hidden */
+}
+
+.card {
+    background-color: #333333;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    margin: 10px;
+    flex: 1;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.card:hover {
+    background-color: #444444;
+}
+
+.chat-box {
+    width: 100%;
+    background-color: #333333;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.message-container {
+    padding: 20px;
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+.message {
+    margin: 10px 0;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+    background-color: #444444;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #555555;
+}
+
+th {
+    background-color: #333333;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #555555;
+}
+
+tr:hover {
+    background-color: #666666;
+}
+
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader svg {
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.message.typing {
+    font-style: italic;
+}
+
+.siri-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 100px;
+    position: relative;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.siri-loader div {
+    width: 8px;
+    height: 100%;
+    background: #00a884;
+    margin: 0 2px;
+    border-radius: 4px;
+    animation: wave 1s infinite ease-in-out;
+}
+
+.siri-loader div:nth-child(1) {
+    animation-delay: -0.4s;
+}
+
+.siri-loader div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+
+.siri-loader div:nth-child(3) {
+    animation-delay: -0.2s;
+}
+
+.siri-loader div:nth-child(4) {
+    animation-delay: -0.1s;
+}
+
+.siri-loader div:nth-child(5) {
+    animation-delay: 0s;
+}
+
+@keyframes wave {
+    0%, 100% {
+        transform: scaleY(1);
+    }
+    50% {
+        transform: scaleY(2);
+    }
+}
+
+.input-container {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #444444;
+}
+
+.input-container input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 16px;
+    background-color: #555555;
+    color: #ffffff;
+}
+
+.input-container button {
+    background-color: #00a884;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.input-container button:hover {
+    background-color: #007a66;
+}
+
