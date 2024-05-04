@@ -1,3 +1,4 @@
+const messageContainer = document.getElementById('message-container');
 document.addEventListener('DOMContentLoaded', (event) => {
     const cards = document.querySelectorAll('.card');
     cards.forEach(card => {
@@ -28,6 +29,15 @@ function showWelcomeCards() {
     }, 50); // Small delay to ensure visibility change is noticed by the browser
 }
 
+function addUserMessageToUI(queryText) {
+    const div = document.createElement('div');
+    div.textContent = queryText;
+    const userMessageDiv = document.createElement('div');
+    userMessageDiv.className = 'user-message';
+    userMessageDiv.appendChild(div);
+    messageContainer.appendChild(userMessageDiv);
+}
+
 async function sendQuery(queryText) {
     const messageContainer = document.getElementById('message-container');
     const queryInput = document.getElementById('query');
@@ -37,10 +47,7 @@ async function sendQuery(queryText) {
     queryInput.disabled = true;
     sendButton.disabled = true;
 
-    const userMessageDiv = document.createElement('div');
-    userMessageDiv.className = 'message user-message';
-    userMessageDiv.textContent = `You: ${queryText}`;
-    messageContainer.appendChild(userMessageDiv);
+    addUserMessageToUI(queryText);
 
     // Show loading animation
     const loadingDiv = document.createElement('div');

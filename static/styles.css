@@ -1,19 +1,49 @@
+:root {
+    --background: rgba(30, 30, 30, 1);
+    --background-g: linear-gradient(180deg,
+            rgba(30, 30, 30, 0) 0%,
+            rgba(30, 30, 30, 0.7) 30%,
+            rgba(30, 30, 30, 1) 40%,
+            rgba(30, 30, 30, 1) 100%);
+}
+
 body {
-    background-color: #1e1e1e;
+    background-color: var(--background);
     color: #ffffff;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
 
+.main {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-direction: column;
+
+    justify-content: space-between;
+}
+
+.main-content {
+    display: flex;
+    width: 100%;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
 }
 
 .header {
     display: flex;
+    width: 100%;
+    padding: 16px 20px;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
@@ -27,12 +57,6 @@ body {
 .header-dropdown {
     font-size: 24px;
     cursor: pointer;
-}
-
-.main-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .welcome-cards {
@@ -73,13 +97,6 @@ body {
     overflow: hidden;
 }
 
-.message-container {
-    padding: 20px;
-    flex-grow: 1;
-    overflow-y: auto;
-    max-height: 400px;
-}
-
 .message {
     margin: 10px 0;
 }
@@ -95,7 +112,8 @@ table {
     overflow: hidden;
 }
 
-th, td {
+th,
+td {
     padding: 10px;
     text-align: left;
     border-bottom: 1px solid #555555;
@@ -188,8 +206,14 @@ tr:hover {
     animation-delay: 0s;
 }
 
+.o {
+    border: 1px solid #00a884;
+}
+
 @keyframes wave {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scaleY(1);
     }
 
@@ -198,15 +222,44 @@ tr:hover {
     }
 }
 
+#message-container {
+    flex: 1;
+    width: 100%;
+    display: block;
+    height: 100%;
+    padding-bottom: 120px;
+}
+
+.user-message {
+    display: flex;
+    justify-content: end;
+    padding-bottom: 5px;
+    padding-top: 24px;
+}
+
+.user-message>div {
+    background-color: #1e4f8a;
+    padding: 16px;
+    max-width: 400px;
+    /* bottom right corner */
+    border-radius: 20px;
+    border-bottom-right-radius: 0px;
+    color: #ffffff;
+}
+
 #input-bar {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    max-width: 800px;
-    margin: 16px auto;
+    background: var(--background-g);
+}
+
+#input-bar>div {
     display: flex;
     height: 56px;
+    margin: 40px auto 16px auto;
+    width: 800px;
 }
 
 #input-bar input {
@@ -244,6 +297,10 @@ tr:hover {
     transition: background-color 0.3s;
 }
 
-.input-container button:hover {
+#input-bar button:disabled {
+    background-color: #888888;
+}
+
+#input-bar button:hover {
     background-color: #007a66;
 }
