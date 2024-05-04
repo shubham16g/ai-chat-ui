@@ -1,11 +1,47 @@
 function mockDoQuery(queryText, onPlanReceived, onResultReceived, onError) {
     
     setTimeout(() => {
-        onPlanReceived("This is the plan data. This is the plan data. This is the plan data. This is the plan data.");
+        onPlanReceived("This is the plan data. The plan data will load before the result data in typewritter effect. Once the result will received, the speed of typewritter effect will increase and once typed, the result will be displayed in the result area.");
     }, 1000);
 
     setTimeout(() => {
-        onResultReceived("This is the result data. This is the result data. This is the result data. This is the result data. ");
+        onResultReceived(`Here is the Data
+<br><br><table border="1" class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Name</th>
+      <th>Age</th>
+      <th>City</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>John</td>
+      <td>25</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <td>Alice</td>
+      <td>30</td>
+      <td>Los Angeles</td>
+    </tr>
+    <tr>
+      <td>Bob</td>
+      <td>35</td>
+      <td>Chicago</td>
+    </tr>
+    <tr>
+      <td>Emily</td>
+      <td>28</td>
+      <td>San Francisco</td>
+    </tr>
+    <tr>
+      <td>David</td>
+      <td>40</td>
+      <td>Seattle</td>
+    </tr>
+  </tbody>
+</table>`);
     }, 2000);
     
 }
