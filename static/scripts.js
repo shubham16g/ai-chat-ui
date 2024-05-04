@@ -1,4 +1,7 @@
 const messageContainer = document.getElementById('message-container');
+const queryInput = document.getElementById('query');
+const sendButton = document.querySelector('#input-bar button');
+
 document.addEventListener('DOMContentLoaded', (event) => {
     const cards = document.querySelectorAll('.card');
     cards.forEach(card => {
@@ -38,18 +41,7 @@ function addUserMessageToUI(queryText) {
     messageContainer.appendChild(userMessageDiv);
 }
 
-async function sendQuery(queryText) {
-    const messageContainer = document.getElementById('message-container');
-    const queryInput = document.getElementById('query');
-    const sendButton = document.querySelector('#input-bar button');
-
-    // Disable input and button
-    queryInput.disabled = true;
-    sendButton.disabled = true;
-
-    addUserMessageToUI(queryText);
-
-    // Show loading animation
+function addLoaderToUI() {
     const loadingDiv = document.createElement('div');
     loadingDiv.className = 'loading';
     loadingDiv.innerHTML = `
@@ -57,25 +49,60 @@ async function sendQuery(queryText) {
             <div></div><div></div><div></div><div></div><div></div>
         </div>`;
     messageContainer.appendChild(loadingDiv);
+    return loadingDiv;
+}
+
+function addResultBoxToUI() {
+    const icon = document.createElement('div');
+    icon.className = 'icon';
+    const result = document.createElement('div');
+    result.className = 'result';
+    const aiMessageDiv = document.createElement('div');
+    aiMessageDiv.className = 'result-message';
+    aiMessageDiv.appendChild(icon);
+    aiMessageDiv.appendChild(result);
+    messageContainer.appendChild(aiMessageDiv);
+    return result;
+}
+
+async function sendQuery(queryText) {
+    // Disable input and button
+    queryInput.disabled = true;
+    sendButton.disabled = true;
+
+    addUserMessageToUI(queryText);
+    let loadingDiv = addLoaderToUI();
+    // Show loading animation
+
     let isResultReceived = false;
     let planDisplayed = false;
     let receivedResult = "";
     let receivedPlanData = "";
 
+    let resultBox = addResultBoxToUI();
+    // scroll to bottom body 
+    // window.scrollTo(0, document.body.scrollHeight);
+    // make it smooth
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+    });
+
+
     mockDoQuery(queryText, async (planData) => {
         /// onPlanReceived
         receivedPlanData = planData;
-        await displayPlanData(planData);
+        await displayPlanData(resultBox, planData);
         planDisplayed = true;
         if (isResultReceived) {
-            displayExecuteData(receivedResult);
+            displayExecuteData(resultBox, receivedResult);
         }
     }, (result) => {
         /// onResultReceived
         isResultReceived = true;
         receivedResult = result;
         if (planDisplayed) {
-            displayExecuteData(receivedResult);
+            displayExecuteData(resultBox, receivedResult);
         }
     }, () => {
         /// onError
@@ -90,11 +117,10 @@ async function sendQuery(queryText) {
         showWelcomeCards();
     });
 
-    async function displayPlanData(planData) {
+    async function displayPlanData(box, planData) {
         const aiMessageDiv = document.createElement('div');
         aiMessageDiv.className = 'message ai-message';
-        messageContainer.appendChild(aiMessageDiv);
-        aiMessageDiv.textContent += 'AI: ';
+        box.appendChild(aiMessageDiv);
 
         let index = 0;
         await printCharByChar();
@@ -109,11 +135,12 @@ async function sendQuery(queryText) {
         }
     }
 
-    function displayExecuteData(executeData) {
+    function displayExecuteData(box, executeData) {
         const aiMessageDiv = document.createElement('div');
         aiMessageDiv.className = 'message ai-message';
         aiMessageDiv.innerHTML = `${executeData}`;
-        messageContainer.appendChild(aiMessageDiv);
+        box.appendChild(aiMessageDiv);
+        box.style.minHeight = '0';
 
         // Remove loading animation
         loadingDiv.remove();
