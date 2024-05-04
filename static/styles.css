@@ -45,7 +45,8 @@ body {
 .welcome-cards.hidden {
     opacity: 0;
     visibility: hidden;
-    pointer-events: none; /* Optional: prevent interaction when hidden */
+    pointer-events: none;
+    /* Optional: prevent interaction when hidden */
 }
 
 .card {
@@ -137,6 +138,7 @@ tr:hover {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
@@ -190,33 +192,54 @@ tr:hover {
     0%, 100% {
         transform: scaleY(1);
     }
+
     50% {
         transform: scaleY(2);
     }
 }
 
-.input-container {
+#input-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 800px;
+    margin: 16px auto;
     display: flex;
-    padding: 10px;
-    border-top: 1px solid #444444;
+    height: 56px;
 }
 
-.input-container input {
+#input-bar input {
     flex: 1;
-    padding: 10px;
+    padding: 10px 26px;
     border: none;
     border-radius: 5px;
     margin-right: 10px;
+    outline: none;
     font-size: 16px;
-    background-color: #555555;
+    background-color: transparent;
+    background-color: #333333;
+    border-radius: 60px;
     color: #ffffff;
+    transition: all 0.15s;
 }
 
-.input-container button {
+#input-bar input::placeholder {
+    color: #888888;
+}
+
+#input-bar input:focus {
+    background-color: #444444;
+}
+
+#input-bar button {
     background-color: #00a884;
     border: none;
     border-radius: 50%;
     padding: 10px;
+    width: 56px;
+    height: 56px;
+    color: #ffffff;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -224,4 +247,3 @@ tr:hover {
 .input-container button:hover {
     background-color: #007a66;
 }
-

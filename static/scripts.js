@@ -31,7 +31,7 @@ function showWelcomeCards() {
 async function sendQuery(queryText) {
     const messageContainer = document.getElementById('message-container');
     const queryInput = document.getElementById('query');
-    const sendButton = document.querySelector('.input-container button');
+    const sendButton = document.querySelector('#input-bar button');
 
     // Disable input and button
     queryInput.disabled = true;
