@@ -12,6 +12,8 @@ body {
     color: #ffffff;
     font-family: Arial, sans-serif;
     margin: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
     padding: 0;
 }
 
@@ -243,11 +245,23 @@ tr:hover {
 }
 
 .result-message>div.icon {
-    background-color: #e63737;
+    background-color: #221455;
     height: 40px;
     width: 40px;
     border-radius: 40px;
     margin-right: 10px;
+    box-shadow: 0 0 10px #6637e6;
+    background-image: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.ai-icon {
+    background-image: url("https://i.pinimg.com/originals/e3/3d/ff/e33dffe14c05041b40e936901320b154.gif") !important;
+    background-size: cover;
+    background-position: center;
+    background-size: 290%;
+    box-shadow: 0 0 10px #6637e6 !important;
+    transition: all 0.3s ease-in-out;
 }
 
 .result-message>div.result {
@@ -255,6 +269,7 @@ tr:hover {
     flex: 1;
     margin-right: 200px;
     min-height: 70vh;
+    transition: min-height 1s ease-out;
 }
 
 .user-message {
@@ -265,7 +280,7 @@ tr:hover {
 }
 
 .user-message>div {
-    background-color: #1e4f8a;
+    background-color: #535d69;
     padding: 16px;
     max-width: 400px;
     /* bottom right corner */

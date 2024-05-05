@@ -54,7 +54,7 @@ function addLoaderToUI() {
 
 function addResultBoxToUI() {
     const icon = document.createElement('div');
-    icon.className = 'icon';
+    icon.className = 'icon ai-icon';
     const result = document.createElement('div');
     result.className = 'result';
     const aiMessageDiv = document.createElement('div');
@@ -65,14 +65,20 @@ function addResultBoxToUI() {
     return result;
 }
 
+function hideAiLoading() {
+    let aiIcon = document.querySelector('.ai-icon');
+    aiIcon.classList.remove('ai-icon');
+    // todo remove shimmer effect 
+}
+
 async function sendQuery(queryText) {
     // Disable input and button
     queryInput.disabled = true;
     sendButton.disabled = true;
 
     addUserMessageToUI(queryText);
-    let loadingDiv = addLoaderToUI();
-    // Show loading animation
+    // let loadingDiv = addLoaderToUI();
+    // Removed this loading animation.
 
     let isResultReceived = false;
     let planDisplayed = false;
@@ -106,7 +112,7 @@ async function sendQuery(queryText) {
         }
     }, () => {
         /// onError
-        loadingDiv.remove();
+        // loadingDiv.remove();
 
         // Enable input and button in case of error
         queryInput.disabled = false;
@@ -136,6 +142,7 @@ async function sendQuery(queryText) {
     }
 
     function displayExecuteData(box, executeData) {
+        hideAiLoading();
         const aiMessageDiv = document.createElement('div');
         aiMessageDiv.className = 'message ai-message';
         aiMessageDiv.innerHTML = `${executeData}`;
@@ -143,7 +150,7 @@ async function sendQuery(queryText) {
         box.style.minHeight = '0';
 
         // Remove loading animation
-        loadingDiv.remove();
+        // loadingDiv.remove();
 
         // Enable input and button
         queryInput.disabled = false;
