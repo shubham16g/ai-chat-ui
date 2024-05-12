@@ -19,14 +19,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
 function hideWelcomeCards() {
     const welcomeCards = document.querySelector('.welcome-cards');
     welcomeCards.classList.add('hidden');
-    setTimeout(() => {
-        welcomeCards.style.display = 'hidden';
-    }, 500); // Match this duration to your CSS transition duration
 }
 
 function showWelcomeCards() {
+    return; // Disable welcome cards for now
     const welcomeCards = document.querySelector('.welcome-cards');
-    welcomeCards.style.display = 'flex';
     setTimeout(() => {
         welcomeCards.classList.remove('hidden');
     }, 50); // Small delay to ensure visibility change is noticed by the browser
@@ -37,7 +34,9 @@ function addUserMessageToUI(queryText) {
     div.textContent = queryText;
     const userMessageDiv = document.createElement('div');
     userMessageDiv.className = 'user-message';
-    userMessageDiv.appendChild(div);
+    setTimeout(() => {
+        userMessageDiv.appendChild(div);
+    }, 400);
     messageContainer.appendChild(userMessageDiv);
 }
 
@@ -54,20 +53,32 @@ function addLoaderToUI() {
 
 function addResultBoxToUI() {
     const icon = document.createElement('div');
-    icon.className = 'icon ai-icon';
+    icon.className = 'icon';
+    const aiIcon = document.createElement('div');
+    aiIcon.className = 'ai-icon';
+    icon.appendChild(aiIcon);
     const result = document.createElement('div');
     result.className = 'result';
     const aiMessageDiv = document.createElement('div');
     aiMessageDiv.className = 'result-message';
-    aiMessageDiv.appendChild(icon);
-    aiMessageDiv.appendChild(result);
+    setTimeout(() => {
+        aiMessageDiv.appendChild(icon);
+
+        aiMessageDiv.appendChild(result);
+    }, 1000);
     messageContainer.appendChild(aiMessageDiv);
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+    });
     return result;
 }
 
 function hideAiLoading() {
-    let aiIcon = document.querySelector('.ai-icon');
-    aiIcon.classList.remove('ai-icon');
+    let aiIcon = document.getElementsByClassName('ai-icon');
+    for (let i = 0; i < aiIcon.length; i++) {
+        aiIcon[i].classList.add('hidden');
+    }
     // todo remove shimmer effect 
 }
 
@@ -86,13 +97,7 @@ async function sendQuery(queryText) {
     let receivedPlanData = "";
 
     let resultBox = addResultBoxToUI();
-    // scroll to bottom body 
-    // window.scrollTo(0, document.body.scrollHeight);
-    // make it smooth
-    window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: 'smooth'
-    });
+    console.log(resultBox);
 
 
     mockDoQuery(queryText, async (planData) => {
@@ -136,7 +141,7 @@ async function sendQuery(queryText) {
             }
             aiMessageDiv.textContent += planData.charAt(index);
             index++;
-            await new Promise(resolve => setTimeout(resolve, isResultReceived ? 10 : 50));
+            await new Promise(resolve => setTimeout(resolve, isResultReceived ? 5 : 50));
             await printCharByChar();
         }
     }
@@ -147,7 +152,7 @@ async function sendQuery(queryText) {
         aiMessageDiv.className = 'message ai-message';
         aiMessageDiv.innerHTML = `${executeData}`;
         box.appendChild(aiMessageDiv);
-        box.style.minHeight = '0';
+        box.parentElement.style.minHeight = '0';
 
         // Remove loading animation
         // loadingDiv.remove();
