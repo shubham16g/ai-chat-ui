@@ -54,8 +54,10 @@ function addLoaderToUI() {
 function addResultBoxToUI() {
     const icon = document.createElement('div');
     icon.className = 'icon';
+    const appIcon = document.createElement('div');
     const aiIcon = document.createElement('div');
     aiIcon.className = 'ai-icon';
+    icon.appendChild(appIcon);
     icon.appendChild(aiIcon);
     const result = document.createElement('div');
     result.className = 'result';

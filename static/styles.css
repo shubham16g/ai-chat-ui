@@ -53,6 +53,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
+    z-index: 1000;
     box-shadow: 0 0 30px #302d37;
 }
 
@@ -195,9 +196,10 @@ tr:hover {
     height: 40px;
     width: 40px;
     border-radius: 40px;
-    margin-right: 10px;
+    margin-right: 18px;
     box-shadow: 0 0 30px #332161;
     background-image: none;
+    position: relative;
     transition: all 0.3s ease-in-out;
     animation: zoomInJump 0.5s;
 }
@@ -209,9 +211,11 @@ tr:hover {
     background-size: 290%;
     height: 100%;
     width: 100%;
+    position: absolute;
     border-radius: 100%;
     box-shadow: 0 0 30px #6637e6 !important;
     transition: all 0.3s ease-in-out;
+    z-index: 5;
     /* animation: zoomIn 0.5s; */
 }
 
