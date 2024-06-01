@@ -51,21 +51,46 @@ function addLoaderToUI() {
     return loadingDiv;
 }
 
+function createShimmerDiv() {
+    const shimmer = document.createElement('div');
+    shimmer.className = 'shimmer';
+    addShimmerItem(shimmer, 1600);
+    addShimmerItem(shimmer, 2000);
+    addShimmerItem(shimmer, 2400);
+    return shimmer;
+}
+
+async function hideShimmerDiv() {
+    const shimmer = document.getElementsByClassName('shimmer');
+    for (let i = 0; i < shimmer.length; i++) {
+        shimmer[i].classList.add('hidden');
+    }
+    await new Promise(resolve => setTimeout(resolve, 600));
+    for (let i = 0; i < shimmer.length; i++) {
+        shimmer[i].classList.remove('shimmer');
+    }
+}
+
+function addShimmerItem(shimmer, delay) {
+    const div = document.createElement('div');
+    setTimeout(() => {
+        shimmer.appendChild(div);
+    }, delay);
+}
+
 function addResultBoxToUI() {
     const icon = document.createElement('div');
     icon.className = 'icon';
-    const appIcon = document.createElement('div');
     const aiIcon = document.createElement('div');
     aiIcon.className = 'ai-icon';
-    icon.appendChild(appIcon);
     icon.appendChild(aiIcon);
     const result = document.createElement('div');
     result.className = 'result';
+    result.appendChild(createShimmerDiv());
     const aiMessageDiv = document.createElement('div');
     aiMessageDiv.className = 'result-message';
     setTimeout(() => {
         aiMessageDiv.appendChild(icon);
-
         aiMessageDiv.appendChild(result);
     }, 1000);
     messageContainer.appendChild(aiMessageDiv);
@@ -131,6 +156,7 @@ async function sendQuery(queryText) {
     });
 
     async function displayPlanData(box, planData) {
+        await hideShimmerDiv();
         const aiMessageDiv = document.createElement('div');
         aiMessageDiv.className = 'message ai-message';
         box.appendChild(aiMessageDiv);

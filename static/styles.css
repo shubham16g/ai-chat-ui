@@ -192,12 +192,12 @@ tr:hover {
 }
 
 .result-message>div.icon {
-    background-color: #341f7d;
+    /* background-color: #fff; */
     height: 40px;
     width: 40px;
     border-radius: 40px;
     margin-right: 18px;
-    box-shadow: 0 0 30px #332161;
+    /* box-shadow: 0 0 30px rgb(7, 46, 153); */
     background-image: none;
     position: relative;
     transition: all 0.3s ease-in-out;
@@ -205,30 +205,73 @@ tr:hover {
 }
 
 .ai-icon {
-    background-image: url("https://i.pinimg.com/originals/e3/3d/ff/e33dffe14c05041b40e936901320b154.gif") !important;
+    background-image: url("/static/l3.gif") !important;
     background-size: cover;
     background-position: center;
-    background-size: 290%;
-    height: 100%;
-    width: 100%;
+    /* background-size: 290%; */
     position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     border-radius: 100%;
-    box-shadow: 0 0 30px #6637e6 !important;
-    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 30px #21299a !important;
+    transition: all 0.3s ease-out;
     z-index: 5;
     /* animation: zoomIn 0.5s; */
 }
 
 .ai-icon.hidden {
-    background-image: none;
-    transform: scale(0);
+    /* background-image: none !important; */
+    /* background-color: #ffffff; */
+    transform: scale(0.23) translate(80%, 80%);
     /* animation: zoomIn 0.5s; */
 }
+
+.ai-icon.hidden::after {
+    opacity: 1;
+}
+
+.ai-icon.hidden::before {
+    opacity: 1;
+    transform: scale(2.3) translate(-45%, -45%);
+}
+
+.ai-icon::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    background-color: #ffffff;
+    border-radius: 30px;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.ai-icon::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    background-color: #d63a3a;
+    border-radius: 30px;
+    /* ease elastic out */
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.1s;
+}
+
 
 .result-message>div.result {
     margin-top: 9px;
     flex: 1;
     margin-right: 200px;
+    position: relative;
 }
 
 .user-message {
@@ -312,4 +355,43 @@ tr:hover {
 #input-bar button:disabled:hover {
     background-color: #888888;
     box-shadow: none !important;
+}
+
+.shimmer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 4;
+    transition: all 0.3s ease-in;
+}
+
+.shimmer.hidden {
+    display: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(0%, -3%);
+}
+
+.shimmer div {
+    background: linear-gradient(to right,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.5) 50%,
+            rgba(255, 255, 255, 0) 100%);
+    background-size: 200% auto;
+    height: 18px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    width: 100%;
+    /* animation: shimmer 1.5s linear infinite; */
+    /* revese it */
+    animation: shimmer 1.5s linear infinite reverse;
+    /* fade in */
+    animation: shimmer 1.5s linear infinite reverse, fadeIn 0.5s;
+}
+
+@keyframes shimmer {
+    to {
+        background-position: 200% center;
+    }
 }
