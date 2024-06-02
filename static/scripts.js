@@ -122,6 +122,7 @@ async function sendQuery(queryText) {
     let planDisplayed = false;
     let receivedResult = "";
     let receivedPlanData = "";
+    let suggestions = [];
 
     let resultBox = addResultBoxToUI();
     console.log(resultBox);
@@ -134,6 +135,7 @@ async function sendQuery(queryText) {
         planDisplayed = true;
         if (isResultReceived) {
             displayExecuteData(resultBox, receivedResult);
+            tryShowSuggestions();
         }
     }, (result) => {
         /// onResultReceived
@@ -141,10 +143,36 @@ async function sendQuery(queryText) {
         receivedResult = result;
         if (planDisplayed) {
             displayExecuteData(resultBox, receivedResult);
+            tryShowSuggestions();
         }
-    }, async (error) => {
+    }, (mSuggestions) => {
+        suggestions = mSuggestions;
+        tryShowSuggestions();
+    }, (error) => {
         displayErrorData(resultBox, error);
     });
+
+    function tryShowSuggestions() {
+        if (!(isResultReceived && planDisplayed && suggestions.length > 0)) return;
+        const suggestionsDiv = document.createElement('div');
+        suggestionsDiv.className = 'suggestions';
+        for (let i = 0; i < suggestions.length; i++) {
+            addSuggestionItem(suggestionsDiv, suggestions[i], i * 100 + 100);
+        }
+        resultBox.appendChild(suggestionsDiv);
+    }
+    function addSuggestionItem(suggestionsDiv, suggestion, delay) {
+        const suggestionDiv = document.createElement('div');
+        suggestionDiv.className = 'sug';
+        suggestionDiv.textContent = suggestion;
+        suggestionDiv.addEventListener('click', () => {
+            const queryText = suggestionDiv.textContent;
+            sendQuery(queryText);
+        });
+        setTimeout(() => {
+            suggestionsDiv.appendChild(suggestionDiv);
+        }, delay);
+    }
 
     async function displayErrorData(box, errorData) {
         setTimeout(() => {

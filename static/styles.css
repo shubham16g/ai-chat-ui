@@ -415,3 +415,26 @@ tr:hover {
     left: 17px;
     top: 9px;
 }
+
+.suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.sug {
+    background-color: #2d2f31;
+    padding: 10px 25px;
+    border-radius: 20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #4b4e547e;
+    cursor: pointer;
+    transition: all 0.3s;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.sug:hover {
+    background-color: #3d3f43;
+    box-shadow: 0 0 10px #34313b;
+}
