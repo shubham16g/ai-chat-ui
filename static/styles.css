@@ -406,6 +406,7 @@ tr:hover {
     color: #f2dcdc;
     border: 1px solid #d63a3a37;
     animation: fadeIn 0.5s ease-out;
+    position: relative;
 }
 
 .error-message::before {
