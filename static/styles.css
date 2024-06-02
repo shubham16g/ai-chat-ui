@@ -266,7 +266,6 @@ tr:hover {
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.1s;
 }
 
-
 .result-message>div.result {
     margin-top: 9px;
     flex: 1;
@@ -375,9 +374,12 @@ tr:hover {
 
 .shimmer div {
     background: linear-gradient(to right,
-            rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0.5) 50%,
-            rgba(255, 255, 255, 0) 100%);
+            rgba(160, 181, 206, 0.1) 10%,
+            rgba(42, 107, 128, 0.5) 40%,
+            rgba(49, 107, 178, 0.5) 50%,
+            rgba(85, 98, 191, 0.3) 60%,
+            rgba(160, 181, 206, 0.1) 90%);
+    border: 1px solid #b8d7ee07;
     background-size: 200% auto;
     height: 18px;
     margin-bottom: 10px;
@@ -394,4 +396,21 @@ tr:hover {
     to {
         background-position: 200% center;
     }
+}
+
+.error-message {
+    background-color: #d63a3a0d;
+    padding: 10px 20px 10px 50px;
+    border-radius: 8px;
+    display: inline-block;
+    color: #f2dcdc;
+    border: 1px solid #d63a3a37;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.error-message::before {
+    content: "⚠️";
+    position: absolute;
+    left: 17px;
+    top: 9px;
 }

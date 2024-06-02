@@ -142,18 +142,25 @@ async function sendQuery(queryText) {
         if (planDisplayed) {
             displayExecuteData(resultBox, receivedResult);
         }
-    }, () => {
-        /// onError
-        // loadingDiv.remove();
+    }, async (error) => {
+        displayErrorData(resultBox, error);
+    });
 
-        // Enable input and button in case of error
+    async function displayErrorData(box, errorData) {
+        setTimeout(() => {
+            hideAiLoading();
+        }, 200);
+        await hideShimmerDiv();
+        const aiMessageDiv = document.createElement('div');
+        aiMessageDiv.className = 'error-message';
+        aiMessageDiv.innerHTML = `${errorData}`;
+        box.appendChild(aiMessageDiv);
+        box.parentElement.style.minHeight = '0';
+
         queryInput.disabled = false;
         sendButton.disabled = false;
         queryInput.focus();
-
-        // Show welcome cards again in case of error
-        showWelcomeCards();
-    });
+    }
 
     async function displayPlanData(box, planData) {
         await hideShimmerDiv();
