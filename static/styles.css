@@ -226,7 +226,7 @@ tr:hover {
     margin-top: 5px;
     justify-content: start;
     padding-bottom: 5px;
-    min-height: calc(100vh - 300px);
+    min-height: calc(100vh - 295px);
     transition: min-height 1.2s ease-out;
     animation: fadeIn 0.5s;
 }

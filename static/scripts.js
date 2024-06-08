@@ -140,10 +140,7 @@ async function sendQuery(queryText) {
 
     hideWelcomeCards();
 
-    try {
-        const aiMessageDiv = messageContainer.lastElementChild;
-        aiMessageDiv.style.minHeight = '0';
-    } catch (error) { }
+    const aiMessageDiv = messageContainer.lastElementChild;
 
     addUserMessageToUI(queryText);
     // let loadingDiv = addLoaderToUI();
@@ -156,8 +153,9 @@ async function sendQuery(queryText) {
     let suggestions = [];
 
     let resultBox = addResultBoxToUI();
-    console.log(resultBox);
-
+    if (aiMessageDiv) {
+        aiMessageDiv.style.minHeight = '0';
+    }
 
     mockDoQuery(queryText, async (planData) => {
         /// onPlanReceived
