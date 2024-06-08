@@ -148,22 +148,49 @@ body {
     background-color: var(--suggestion-bg-hover);
 }
 
+.table-wrapper {
+    display: block;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+
 /* Table Styles */
 table {
-    width: 100%;
+    /* margin: 0 auto; */
+    overflow-x: auto;
     border-collapse: collapse;
     font-family: Arial, sans-serif;
     color: #ffffff;
     background-color: #444444;
+    border: 1px solid transparent;
+    outline: none;
+    white-space: nowrap;
+    /* scrollbar always visible */
+
+
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    height: 10px;
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
     border-radius: 5px;
-    overflow: hidden;
+    background-color: rgba(186, 186, 186, 0.5);
+}
+
+table tbody {
+    width: 100%;
 }
 
 th,
 td {
     padding: 10px;
     text-align: left;
-    border-bottom: 1px solid #555555;
+    border: 1px solid #7b7d7e80;
+    /* border-bottom: 1px solid #555555; */
 }
 
 th {
@@ -189,6 +216,7 @@ tr:hover {
 
 .result-message {
     display: flex;
+    flex-direction: row;
     margin-top: 5px;
     justify-content: start;
     padding-bottom: 5px;
@@ -208,6 +236,14 @@ tr:hover {
     position: relative;
     transition: all 0.3s ease-in-out;
     animation: zoomInJump 0.5s;
+}
+
+.result-message>div.result {
+    margin-top: 9px;
+    flex: 0.9;
+    /* margin-right: 200px; */
+    width: calc(100% - 200px);
+    position: relative;
 }
 
 .pre-load-ai-icon {
@@ -287,13 +323,6 @@ tr:hover {
     border-radius: 30px;
     /* ease elastic out */
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.1s;
-}
-
-.result-message>div.result {
-    margin-top: 9px;
-    flex: 1;
-    margin-right: 200px;
-    position: relative;
 }
 
 .user-message {

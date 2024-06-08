@@ -18,7 +18,9 @@ function mockDoQuery(queryText, onPlanReceived, onResultReceived, onSuggestions,
 
     setTimeout(() => {
         onResultReceived(`Here is the Data
-<br><br><table border="1" class="dataframe table">
+<br><br>
+<div class="table-wrapper">
+<table border="1" class="dataframe table">
   <thead>
     <tr style="text-align: right;">
       <th>Name</th>
@@ -53,7 +55,8 @@ function mockDoQuery(queryText, onPlanReceived, onResultReceived, onSuggestions,
       <td>Seattle</td>
     </tr>
   </tbody>
-</table>`);
+</table>
+</div>`);
     }, 2000);
     
 }
