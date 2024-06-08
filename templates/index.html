@@ -20,16 +20,7 @@
     </div>
 
     <!-- These cards are plaed on center of the screen -->
-    <div class="welcome-cards">
-        <div class="card suggestion">This is a smaple question</div>
-        <div class="card suggestion">Suggestion here</div>
-        <div class="card suggestion">UI can be changed</div>
-        <div class="card suggestion">Any random text</div>
-        <div class="card suggestion">Any random text</div>
-        <div class="card suggestion">Any random text</div>
-        <div class="card suggestion">Any random text</div>
-        <div class="card suggestion">Any random text</div>
-    </div>
+    <div class="welcome-cards"></div>
     <!-- Main page -->
     <div class="main-content container">
         <div id="message-container"></div>
@@ -39,6 +30,8 @@
         <div>
             <input type="text" id="query" placeholder="Ask AI" autocomplete="off">
             <button onclick="sendMessage()">
+                <div class="pre-load-ai-icon"></div>
+
                 <svg style="transform: scale(0.7);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="feather feather-arrow-up">

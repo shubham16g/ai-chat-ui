@@ -104,10 +104,12 @@ body {
     position: fixed;
     left: 50%;
     top: 50%;
+    min-height: 220px;
+    gap: 20px;
     transform: translate(-50%, -50%);
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    width: 1000px;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    max-width: 1000px;
     transition: visibility 0.1s ease-in, opacity 0.1s ease-in,
         transform 0.1s ease-in;
     /* opacity: 0; */
@@ -125,13 +127,12 @@ body {
 .card {
     background-color: #333333;
     border-radius: 10px;
-    height: 60px;
+    height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 0 20px;
     text-align: center;
-    margin: 10px;
     flex: 1;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -202,6 +203,23 @@ tr:hover {
     position: relative;
     transition: all 0.3s ease-in-out;
     animation: zoomInJump 0.5s;
+}
+
+.pre-load-ai-icon {
+    background-image: url("/static/l3.gif") !important;
+    background-color: #21299a;
+    pointer-events: none;
+    background-size: 250%;
+    background-position: center;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 50%;
+    transition: all 0.3s ease-out;
+    z-index: 19;
 }
 
 .ai-icon {
@@ -319,6 +337,7 @@ tr:hover {
     border-radius: 60px;
     color: #ffffff;
     transition: all 0.15s;
+    animation: fadeIn 0.5s ease-out;
 }
 
 #input-bar input::placeholder {
@@ -338,11 +357,25 @@ tr:hover {
     height: 56px;
     color: #ffffff;
     cursor: pointer;
+    position: relative;
     transition: background-color 0.3s;
+    animation: fadeIn 0.6s ease-out;
+}
+
+#input-bar button>svg {
+    position: absolute;
+    /* padding: 60px; */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    scale: 0.8;
+    /* transform: translate(-50%, -50%); */
+    z-index: 20;
 }
 
 #input-bar button:disabled {
-    background-color: #888888;
+    background-color: #6e7074;
 }
 
 #input-bar button:hover {
@@ -350,10 +383,19 @@ tr:hover {
     box-shadow: 0 0 30px #332161 !important;
 }
 
+#input-bar button:hover .pre-load-ai-icon {
+    opacity: 0.2;
+}
+
 /* disable hover when disabled */
 #input-bar button:disabled:hover {
     background-color: #888888;
+    cursor: unset;
     box-shadow: none !important;
+}
+
+#input-bar button:disabled:hover .pre-load-ai-icon {
+    opacity: 0;
 }
 
 .shimmer {

@@ -3,18 +3,47 @@ const queryInput = document.getElementById('query');
 const sendButton = document.querySelector('#input-bar button');
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(card => {
-        card.addEventListener('click', () => {
-            const queryText = card.textContent;
-            hideWelcomeCards();
-            sendQuery(queryText);
-        });
-    });
+    setupWelcomeCards([
+        "This is a smaple question",
+        "Suggestion here",
+        "UI can be changed",
+        "Any random text",
+        "Any random text",
+        "Any random text",
+        "Any random text",
+        "Any random text",
+    ]);
+});
+
+function setupWelcomeCards(suggestions) {
+    const welcomeCards = document.querySelector('.welcome-cards');
+    for (let i = 0; i < suggestions.length; i++) {
+        addWelcomeCardToUI(welcomeCards, suggestions[i], i * 50);
+    }
+    // const cards = document.querySelectorAll('.card');
+    // cards.forEach(card => {
+    //     card.addEventListener('click', () => {
+    //         const queryText = card.textContent;
+    //         hideWelcomeCards();
+    //         sendQuery(queryText);
+    //     });
+    // });
 
     const queryInput = document.getElementById('query');
     queryInput.addEventListener('keydown', handleKeyPress);
-});
+}
+
+function addWelcomeCardToUI(welcomeCardsDiv, suggestion, delay) {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.textContent = suggestion;
+    card.addEventListener('click', () => {
+        sendQuery(suggestion);
+    });
+    setTimeout(() => {
+        welcomeCardsDiv.appendChild(card);
+    }, delay);
+}
 
 function hideWelcomeCards() {
     const welcomeCards = document.querySelector('.welcome-cards');
@@ -114,6 +143,7 @@ async function sendQuery(queryText) {
     queryInput.disabled = true;
     sendButton.disabled = true;
 
+    hideWelcomeCards();
     addUserMessageToUI(queryText);
     // let loadingDiv = addLoaderToUI();
     // Removed this loading animation.
