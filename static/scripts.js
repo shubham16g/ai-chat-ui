@@ -4,14 +4,14 @@ const sendButton = document.querySelector('#input-bar button');
 
 document.addEventListener('DOMContentLoaded', (event) => {
     setupWelcomeCards([
-        "This is a smaple question",
-        "Suggestion here",
-        "UI can be changed",
-        "Any random text",
-        "Any random text",
-        "Any random text",
-        "Any random text",
-        "Any random text",
+        'Suggest Some cheap stocks',
+        'What is the market cap of TCS',
+        'Top 10 stocks in automotive industry',
+        'Most invested Stock',
+        'Most invested Stock',
+        'Most invested Stock',
+        'Most invested Stock',
+        'Most invested Stock',
     ]);
 });
 
@@ -48,14 +48,6 @@ function addWelcomeCardToUI(welcomeCardsDiv, suggestion, delay) {
 function hideWelcomeCards() {
     const welcomeCards = document.querySelector('.welcome-cards');
     welcomeCards.classList.add('hidden');
-}
-
-function showWelcomeCards() {
-    return; // Disable welcome cards for now
-    const welcomeCards = document.querySelector('.welcome-cards');
-    setTimeout(() => {
-        welcomeCards.classList.remove('hidden');
-    }, 50); // Small delay to ensure visibility change is noticed by the browser
 }
 
 function addUserMessageToUI(queryText) {
@@ -144,6 +136,12 @@ async function sendQuery(queryText) {
     sendButton.disabled = true;
 
     hideWelcomeCards();
+
+    try {
+        const aiMessageDiv = messageContainer.lastElementChild;
+        aiMessageDiv.style.minHeight = '0';
+    } catch (error) { }
+
     addUserMessageToUI(queryText);
     // let loadingDiv = addLoaderToUI();
     // Removed this loading animation.
@@ -182,16 +180,16 @@ async function sendQuery(queryText) {
         displayErrorData(resultBox, error);
     });
 
-    function tryShowSuggestions() {
+    async function tryShowSuggestions() {
         if (!(isResultReceived && planDisplayed && suggestions.length > 0)) return;
         const suggestionsDiv = document.createElement('div');
         suggestionsDiv.className = 'suggestions';
-        for (let i = 0; i < suggestions.length; i++) {
-            addSuggestionItem(suggestionsDiv, suggestions[i], i * 100 + 100);
-        }
         resultBox.appendChild(suggestionsDiv);
+        for (let i = 0; i < suggestions.length; i++) {
+            await addSuggestionItem(suggestionsDiv, suggestions[i], i * 100 + 100);
+        }
     }
-    function addSuggestionItem(suggestionsDiv, suggestion, delay) {
+    async function addSuggestionItem(suggestionsDiv, suggestion, delay) {
         const suggestionDiv = document.createElement('div');
         suggestionDiv.className = 'sug';
         suggestionDiv.textContent = suggestion;
@@ -199,9 +197,8 @@ async function sendQuery(queryText) {
             const queryText = suggestionDiv.textContent;
             sendQuery(queryText);
         });
-        setTimeout(() => {
-            suggestionsDiv.appendChild(suggestionDiv);
-        }, delay);
+        await new Promise(resolve => setTimeout(resolve, delay));
+        suggestionsDiv.appendChild(suggestionDiv);
     }
 
     async function displayErrorData(box, errorData) {
@@ -245,7 +242,6 @@ async function sendQuery(queryText) {
         aiMessageDiv.className = 'message ai-message';
         aiMessageDiv.innerHTML = `${executeData}`;
         box.appendChild(aiMessageDiv);
-        box.parentElement.style.minHeight = '0';
 
         // Remove loading animation
         // loadingDiv.remove();
@@ -254,9 +250,6 @@ async function sendQuery(queryText) {
         queryInput.disabled = false;
         sendButton.disabled = false;
         queryInput.focus();
-
-        // Show welcome cards again
-        showWelcomeCards();
     }
 }
 
