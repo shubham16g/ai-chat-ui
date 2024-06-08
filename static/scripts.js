@@ -126,6 +126,9 @@ function hideAiLoading() {
     let aiIcon = document.getElementsByClassName('ai-icon');
     for (let i = 0; i < aiIcon.length; i++) {
         aiIcon[i].classList.add('hidden');
+        setTimeout(() => {
+            aiIcon[i].style.backgroundImage = 'none !important';
+        }, 800);
     }
     // todo remove shimmer effect 
 }
