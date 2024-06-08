@@ -210,7 +210,6 @@ async function sendQuery(queryText) {
         aiMessageDiv.className = 'error-message';
         aiMessageDiv.innerHTML = `${errorData}`;
         box.appendChild(aiMessageDiv);
-        box.parentElement.style.minHeight = '0';
 
         queryInput.disabled = false;
         sendButton.disabled = false;

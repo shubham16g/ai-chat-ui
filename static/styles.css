@@ -19,6 +19,7 @@ body {
     /* font-family: Arial, sans-serif; */
     font-family: "Poppins", sans-serif;
     margin: 0;
+    overflow-y: scroll;
     /* overflow-x: hidden; */
     scroll-behavior: smooth;
     padding: 0;
@@ -151,6 +152,7 @@ body {
 .table-wrapper {
     display: block;
     overflow-x: auto;
+    padding-bottom: 5px;
     scroll-behavior: smooth;
 }
 
@@ -162,7 +164,10 @@ table {
     font-family: Arial, sans-serif;
     color: #ffffff;
     background-color: #444444;
-    border: 1px solid transparent;
+    border: 0px solid transparent;
+    border-radius: 6px;
+    /* clip border radius */
+    overflow: hidden;
     outline: none;
     white-space: nowrap;
     /* scrollbar always visible */
@@ -189,7 +194,8 @@ th,
 td {
     padding: 10px;
     text-align: left;
-    border: 1px solid #7b7d7e80;
+    /* border: 1px solid #444444; */
+    /* border: 1px solid #7b7d7e80; */
     /* border-bottom: 1px solid #555555; */
 }
 
@@ -220,7 +226,7 @@ tr:hover {
     margin-top: 5px;
     justify-content: start;
     padding-bottom: 5px;
-    min-height: 70vh;
+    min-height: calc(100vh - 300px);
     transition: min-height 1.2s ease-out;
     animation: fadeIn 0.5s;
 }
@@ -264,7 +270,7 @@ tr:hover {
 }
 
 .ai-icon {
-    background-image: url("/static/l3.gif") !important;
+    background-image: url("/static/l3.gif");
     background-size: cover;
     background-position: center;
     /* background-size: 290%; */
