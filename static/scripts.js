@@ -105,6 +105,9 @@ function addResultBoxToUI() {
     const aiIcon = document.createElement('div');
     aiIcon.className = 'ai-icon';
     icon.appendChild(aiIcon);
+    const appIcon = document.createElement('div');
+    appIcon.className = 'app-icon';
+    icon.appendChild(appIcon);
     const result = document.createElement('div');
     result.className = 'result';
     result.appendChild(createShimmerDiv());
@@ -125,9 +128,12 @@ function addResultBoxToUI() {
 function hideAiLoading() {
     let aiIcon = document.getElementsByClassName('ai-icon');
     for (let i = 0; i < aiIcon.length; i++) {
-        aiIcon[i].classList.add('hidden');
+        const ai = aiIcon[i];
+        const appIcon = ai.nextElementSibling;
+        ai.classList.add('hidden');
+        appIcon.classList.add('visible');
         setTimeout(() => {
-            aiIcon[i].style.backgroundImage = 'none !important';
+            ai.classList.remove('ai-icon');
         }, 800);
     }
     // todo remove shimmer effect 
