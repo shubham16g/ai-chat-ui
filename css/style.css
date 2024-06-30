@@ -124,6 +124,83 @@ body {
     padding: 0;
 }
 
+#magic-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* background-image: url("../assets/magic.svg"); */
+    background-position: center;
+    background-size: cover;
+    z-index: 1;
+    transition: all 0.3s ease-in;
+    opacity: 0.1;
+    filter: blur(10px);
+    pointer-events: none;
+}
+
+#noise {
+    content: "";
+    position: fixed;
+    top: -20%;
+    left: -25%;
+    right: -25%;
+    bottom: -20%;
+    /* background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0; */
+    background-repeat: repeat;
+    animation: bg-animation .2s infinite;
+    opacity: .5;
+    pointer-events: none;
+    visibility: visible;
+}
+
+@keyframes bg-animation {
+    0% {
+        transform: translate(0, 0)
+    }
+
+    10% {
+        transform: translate(-5%, -5%)
+    }
+
+    20% {
+        transform: translate(-10%, 5%)
+    }
+
+    30% {
+        transform: translate(5%, -10%)
+    }
+
+    40% {
+        transform: translate(-5%, 15%)
+    }
+
+    50% {
+        transform: translate(-10%, 5%)
+    }
+
+    60% {
+        transform: translate(15%, 0)
+    }
+
+    70% {
+        transform: translate(0, 10%)
+    }
+
+    80% {
+        transform: translate(-15%, 0)
+    }
+
+    90% {
+        transform: translate(10%, 5%)
+    }
+
+    100% {
+        transform: translate(5%, 0)
+    }
+}
+
 .main {
     display: flex;
     position: fixed;
@@ -445,7 +522,8 @@ tr:nth-child(even) {
     bottom: 0;
     left: 0;
     right: 0;
-    background: var(--background-g);
+    z-index: 2;
+    /* background: var(--background-g); */
 }
 
 #input-bar>div {

@@ -4,14 +4,14 @@ const sendButton = document.querySelector('#input-bar button');
 
 document.addEventListener('DOMContentLoaded', (event) => {
     setupWelcomeCards([
-        'Suggest Some cheap stocks',
-        'What is the market cap of TCS',
-        'Top 10 stocks in automotive industry',
-        'Most invested Stock',
-        'Most invested Stock',
-        'Most invested Stock',
-        'Most invested Stock',
-        'Most invested Stock',
+        'Lorem ipsum dolor sit amet',
+        'consectetur adipiscing elit',
+        'sed do eiusmod tempor incididunt',
+        'ut labore et dolore magna aliqua',
+        'Ut enim ad minim veniam',
+        'quis nostrud exercitation ullamco',
+        'laboris nisi ut aliquip ex ea',
+        'commodo consequat',
     ]);
 });
 

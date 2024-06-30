@@ -9,10 +9,10 @@ function mockDoQuery(queryText, onPlanReceived, onResultReceived, onSuggestions,
 
     setTimeout(() => {
         onSuggestions([
-            'Suggest Some cheap stocks',
-            'What is the market cap of TCS',
-            'Top 10 stocks in automotive industry',
-            'Most invested Stock',
+            'Suggestion Lorem',
+            'Suggestion alpha',
+            'Suggestion beta',
+            'Suggestion gama',
         ]);
     }, 4000);
 
