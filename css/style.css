@@ -332,7 +332,7 @@ tr:nth-child(even) {
 }
 
 .pre-load-ai-icon {
-    background-image: url("/static/l3.gif");
+    background-image: url("../assets/l3.gif");
     background-color: #21299a;
     pointer-events: none;
     background-size: 250%;
@@ -349,7 +349,7 @@ tr:nth-child(even) {
 }
 
 .ai-icon {
-    background-image: url("/static/l3.gif");
+    background-image: url("../assets/l3.gif");
     filter: var(--ai-icon-filter);
     background-size: cover;
     background-position: center;
